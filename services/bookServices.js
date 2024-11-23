@@ -6,5 +6,11 @@ exports.createBook = async (bookData) => {
 };
 
 exports.getAllBooks = async () => {
-    return await Book.find(); // Fetch all books from the database
+    return await Book.find();
+};
+
+exports.updateBookById = async (id, bookData) => {
+    const book = await Book.findByIdAndUpdate(id, bookData, { new: true, runValidators: true });
+    if (!book) throw new Error('Book not found');
+    return book;
 };

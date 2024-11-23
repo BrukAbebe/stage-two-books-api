@@ -17,4 +17,7 @@ exports.createBook = Joi.object({
         'number.base': 'Published year must be a number.',
         'any.required': 'Published year is required.',
     }),
+    favorite: Joi.boolean().optional(),
 });
+
+exports.updateBook = exports.createBook;

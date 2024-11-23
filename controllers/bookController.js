@@ -20,3 +20,15 @@ exports.getAllBooks = catchAsync(async (req, res) => {
         data: books,
     });
 });
+
+exports.updateBook = catchAsync(async (req, res) => {
+    const { id } = req.params; 
+    const updatedBook = await bookService.updateBookById(id, req.body);
+    res.status(StatusCodes.OK).json({
+        success: true,
+        message: "Book updated successfully.",
+        data: {
+            book: updatedBook,
+        },
+    });
+});

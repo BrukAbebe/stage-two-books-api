@@ -14,7 +14,7 @@ const bookSchema = new mongoose.Schema({
     isbn: {
         type: String,
         required: [true, 'ISBN is required'],
-        unique: true,
+        unique: [true, 'ISBN already exists'],
         trim: true,
     },
     publishedYear: {

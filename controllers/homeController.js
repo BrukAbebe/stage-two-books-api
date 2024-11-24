@@ -1,4 +1,4 @@
-const DEPLOYMENT_URL = "http://localhost:3000"; 
+const DEPLOYMENT_URL = "https://stage-two-books-api.vercel.app"; 
 
 exports.getHome = (req, res) => {
     res.status(200).json({

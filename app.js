@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const errorConverter = require('./middlewares/errorConverter');
 const errorHandler = require('./middlewares/errorHandler');
+const notFoundHandler = require('./middlewares/notFoundHandler');
+
 
 const bookRoutes = require('./routes/bookRoutes');
 
@@ -16,6 +18,7 @@ connectDB();
 
 app.use('/books', bookRoutes);
 
+app.use(notFoundHandler);
 app.use(errorConverter);
 app.use(errorHandler);
 

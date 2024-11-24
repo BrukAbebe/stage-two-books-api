@@ -1,21 +1,19 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const errorConverter = require('./middlewares/errorConverter');
-const errorHandler = require('./middlewares/errorHandler');
-const notFoundHandler = require('./middlewares/notFoundHandler');
+const helmet = require('helmet');
+const cors = require('cors');
 
 const homeRoutes = require('./routes/indexRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 
+const errorConverter = require('./middlewares/errorConverter');
+const errorHandler = require('./middlewares/errorHandler');
+const notFoundHandler = require('./middlewares/notFoundHandler');
 
-dotenv.config();
 
 const app = express();
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
-
-connectDB();
-
 
 app.use('/', homeRoutes);
 app.use('/books', bookRoutes);
@@ -24,7 +22,5 @@ app.use(notFoundHandler);
 app.use(errorConverter);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
-});
+
+module.exports = app;

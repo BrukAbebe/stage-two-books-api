@@ -5,7 +5,7 @@ const errorConverter = require('./middlewares/errorConverter');
 const errorHandler = require('./middlewares/errorHandler');
 const notFoundHandler = require('./middlewares/notFoundHandler');
 
-
+const homeRoutes = require('./routes/indexRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 
 
@@ -16,6 +16,8 @@ app.use(express.json());
 
 connectDB();
 
+
+app.use('/', homeRoutes);
 app.use('/books', bookRoutes);
 
 app.use(notFoundHandler);
